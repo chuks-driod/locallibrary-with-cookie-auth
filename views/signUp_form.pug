@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  link(rel="shortcut icon" href="/images/favicon-32x32.png" type="image/x-icon")
+  link(rel="stylesheet", href="/stylesheets/signUp.css")
+  
+  h1=title
+  
+  form(method='POST' action='')
+    div.form-group
+      label(for='firstName') First Name:
+      input#first_name.form-control(type='text' placeholder='First name (Christian)' name="firstName" required='true' value=(undefined===users ? '' : users.firstName) )
+      label(for='lastName') Last Name:
+      input#last_name.form-control(type='text' placeholder='Last name (surname)' name="lastName" required='true' value=(undefined===users ? '' : users.lastName))
+      div.email.error
+        p #{messages.error}
+      label(for="email") Email: 
+      input#email.form-control(type="email" placeholder="email" name="email" required="true" value=(undefined===users ? "" : users.email) ) 
+      div.password.error
+      label(for="password") Password: 
+      input.form-control(type="password" placeholder="Enter password" name="password" required="true" value=(undefined===users ? "" : users.password)) 
+    button.btn.btn-primary(type='submit') SignUp
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
